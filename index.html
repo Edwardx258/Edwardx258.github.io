@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yixuan Zhang — Portfolio</title>
+  <title>Yixuan Xiong — Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -408,7 +408,13 @@
       background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 55%);
       border-radius: inherit; pointer-events: none;
     }
-    .sticker-icon { font-size: 22px; line-height: 1; }
+    .sticker-icon {
+      width: 24px; height: 24px; line-height: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700;
+      letter-spacing: 0;
+    }
+    .sticker-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .sticker-label {
       font-family: 'Space Mono', monospace;
       font-size: 8px; font-weight: 700;
@@ -424,6 +430,7 @@
     .stk-avatar  .sticker-inner { background: linear-gradient(145deg, #ffeaa7, #fdcb6e); color: #2d3436; }
     .stk-sql     .sticker-inner { background: linear-gradient(145deg, #00b4d8, #0096c7); color: #fff; }
     .stk-llm     .sticker-inner { background: linear-gradient(145deg, #b5838d, #9b5468); color: #fff; }
+    .stk-llm img { filter: invert(1); }
 
     /* ═══════════════════════
        CONTENT TYPOGRAPHY
@@ -435,11 +442,53 @@
     /* typewriter */
     #tw { font-size: 13px; line-height: 1.95; color: var(--t2); min-height: 120px; }
     .cr { display: inline-block; width: 8px; height: 14px; background: var(--t2); vertical-align: text-bottom; margin-left: 1px; animation: blink .65s step-end infinite; }
+    .resume-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+      margin-top: 22px;
+    }
+    .resume-item {
+      background: var(--bg); box-shadow: var(--ins); border-radius: 8px;
+      padding: 13px 15px;
+    }
+    .resume-k {
+      display: block; font-family: 'Space Mono', monospace; font-size: 8px;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--t3);
+      margin-bottom: 5px;
+    }
+    .resume-v { font-size: 12px; line-height: 1.65; color: var(--t2); }
+    .resume-actions {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 14px;
+    }
+    .print-link,
+    .print-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--bg); box-shadow: var(--cvs);
+      border: none; border-radius: 10px;
+      padding: 10px 14px;
+      font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--t1); text-decoration: none; cursor: pointer;
+      transition: box-shadow var(--ease), transform var(--ease), color var(--ease);
+    }
+    .print-link:hover,
+    .print-btn:hover { box-shadow: var(--cvm); transform: translateY(-2px); color: var(--ac); }
+    .print-link:active,
+    .print-btn:active { box-shadow: var(--ins); transform: none; }
+    .print-link img,
+    .print-btn img { width: 14px; height: 14px; display: block; }
 
     /* skills */
     .sg { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .si { display: flex; flex-direction: column; gap: 7px; }
-    .sn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--t2); }
+    .skill-head { display: flex; align-items: center; gap: 9px; min-width: 0; }
+    .skill-icon {
+      width: 24px; height: 24px; border-radius: 7px;
+      background: var(--paper); box-shadow: var(--cvs);
+      padding: 4px; flex: 0 0 24px;
+    }
+    .skill-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .sn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--t2); overflow-wrap: anywhere; }
     .dr { display: flex; gap: 7px; }
     .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--bg); box-shadow: var(--cvs); transition: background var(--ease), box-shadow var(--ease); }
     .dot.on { background: var(--ac); box-shadow: 2px 2px 5px var(--lo), -1px -1px 3px var(--hi); }
@@ -467,7 +516,42 @@
     .ptg { display: block; font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: .15em; text-transform: uppercase; color: var(--t3); margin-bottom: 10px; }
     .pti { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; color: var(--t1); margin-bottom: 8px; line-height: 1.4; }
     .pde { font-size: 11px; color: var(--t2); line-height: 1.72; }
-    .plk { display: inline-block; margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--paper-lo); width: 100%; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--ac); text-decoration: none; }
+    .project-detail {
+      display: grid; grid-template-rows: 0fr;
+      opacity: 0; margin-top: 0;
+      transition: grid-template-rows var(--ease), opacity var(--ease), margin-top var(--ease);
+    }
+    .project-detail > div { overflow: hidden; }
+    .pc.printed .project-detail {
+      grid-template-rows: 1fr;
+      opacity: 1; margin-top: 10px;
+    }
+    .project-detail p { margin-bottom: 8px; }
+    .project-detail p:last-child { margin-bottom: 0; }
+    .pc.printing {
+      animation: paperShake .32s ease-in-out 2;
+    }
+    @keyframes paperShake {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-2px) rotate(-.25deg); }
+      75% { transform: translateY(2px) rotate(.25deg); }
+    }
+    .project-meta {
+      display: flex; flex-wrap: wrap; gap: 7px;
+      margin: 12px 0 0;
+    }
+    .project-chip {
+      font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--t2);
+      background: var(--paper); box-shadow: var(--ins);
+      border-radius: 999px; padding: 5px 8px;
+    }
+    .project-links {
+      display: flex; flex-wrap: wrap; gap: 9px; align-items: center;
+      margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--paper-lo);
+    }
+    .plk { display: inline-flex; align-items: center; gap: 7px; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--ac); text-decoration: none; }
+    .plk img { width: 14px; height: 14px; display: block; }
 
     /* contact */
     .cf { display: flex; flex-direction: column; gap: 16px; }
@@ -577,7 +661,7 @@
       .cl { display: none; }
       .cbtn { padding: 12px 4px; }
       .cbtn.mode { flex: 0 0 40px; }
-      .sg, .pg, .fr { grid-template-columns: 1fr; }
+      .sg, .pg, .fr, .resume-grid { grid-template-columns: 1fr; }
       .paper::before,.paper::after,.psec::before,.psec::after { display: none; }
       .scr-name { font-size: 16px; }
       /* hide non-essential stickers on small screens to avoid clutter */
@@ -610,7 +694,7 @@
       <!-- Python -->
       <div class="sticker stk-python" style="--rot:-8deg; top:-34px; left:-22px;" data-sticker>
         <div class="sticker-inner">
-          <span class="sticker-icon">🐍</span>
+          <span class="sticker-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo"></span>
           <span class="sticker-label">Python</span>
         </div>
       </div>
@@ -618,7 +702,7 @@
       <!-- Machine Learning -->
       <div class="sticker stk-ml" style="--rot:5deg; top:-30px; right:24px;" data-sticker>
         <div class="sticker-inner">
-          <span class="sticker-icon">🧠</span>
+          <span class="sticker-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow logo"></span>
           <span class="sticker-label">ML / AI</span>
         </div>
       </div>
@@ -626,7 +710,7 @@
       <!-- Personal avatar -->
       <div class="sticker stk-avatar" style="--rot:-6deg; top:-22px; left:38%;" data-sticker>
         <div class="sticker-inner">
-          <span class="sticker-icon">🧑‍💻</span>
+          <span class="sticker-icon">YX</span>
           <span class="sticker-label">YX</span>
         </div>
       </div>
@@ -634,7 +718,7 @@
       <!-- React (LCD area, outside printer left) -->
       <div class="sticker stk-react" style="--rot:-4deg; top:95px; left:-46px;" data-sticker>
         <div class="sticker-inner">
-          <span class="sticker-icon">⚛️</span>
+          <span class="sticker-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React logo"></span>
           <span class="sticker-label">React</span>
         </div>
       </div>
@@ -650,7 +734,7 @@
       <!-- SQL (below printer, left) -->
       <div class="sticker stk-sql" style="--rot:12deg; bottom:-30px; left:18%;" data-sticker>
         <div class="sticker-inner">
-          <span class="sticker-icon">🗄️</span>
+          <span class="sticker-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL logo"></span>
           <span class="sticker-label">SQL</span>
         </div>
       </div>
@@ -658,7 +742,7 @@
       <!-- LLM (below printer, right) -->
       <div class="sticker stk-llm" style="--rot:-10deg; bottom:-34px; right:14%;" data-sticker>
         <div class="sticker-inner">
-          <span class="sticker-icon">✨</span>
+          <span class="sticker-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/openai.svg" alt="OpenAI logo"></span>
           <span class="sticker-label">LLM / RAG</span>
         </div>
       </div>
@@ -714,8 +798,8 @@
           </div>
           <div class="scr-div"></div>
           <div class="scr-right">
-            <div class="scr-name">Yixuan Zhang<span class="scr-cur"></span></div>
-            <div class="scr-role">ML Engineer &nbsp;/&nbsp; Software Engineer</div>
+            <div class="scr-name">Yixuan Xiong<span class="scr-cur"></span></div>
+            <div class="scr-role">Software Engineer &nbsp;/&nbsp; AI Systems</div>
           </div>
         </div>
 
@@ -746,16 +830,22 @@
     <!-- Paper coming out -->
     <div class="paper">
       <div class="p-in">
-        <div class="p-name">Yixuan Zhang</div>
-        <div class="p-sub">ML · SWE · Data Engineering</div>
+        <div class="p-name">Yixuan “Edward” Xiong</div>
+        <div class="p-sub">SWE · AI Systems · Data Platforms</div>
         <hr class="p-rule">
-        <div class="p-row"><span class="k">Location</span><span class="v">Boston, MA</span></div>
-        <div class="p-row"><span class="k">Degree</span>  <span class="v">M.S. ML &amp; Statistics</span></div>
+        <div class="p-row"><span class="k">Location</span><span class="v">Seattle, WA</span></div>
+        <div class="p-row"><span class="k">Degree</span>  <span class="v">M.S. Computer Science</span></div>
         <div class="p-row"><span class="k">School</span>  <span class="v">Northeastern University</span></div>
         <div class="p-row"><span class="k">Grad.</span>   <span class="v">May 2026</span></div>
         <hr class="p-rule">
-        <div class="p-row"><span class="k">Target</span><span class="v">SWE / ML Eng / Data Eng</span></div>
-        <div class="p-row"><span class="k">Visa</span>  <span class="v">H-1B Sponsorship Required</span></div>
+        <div class="p-row"><span class="k">Focus</span><span class="v">Workflow Automation / Geospatial / AI</span></div>
+        <div class="p-row"><span class="k">Stack</span>  <span class="v">Python · FastAPI · React · AWS</span></div>
+        <div class="resume-actions">
+          <a class="print-link" href="assets/resume.pdf" download="Yixuan-Xiong-Resume.pdf">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/printer.svg" alt="">
+            Print Resume PDF
+          </a>
+        </div>
         <hr class="p-rule">
         <div class="p-hint">▼ &nbsp; scroll to continue &nbsp; ▼</div>
       </div>
@@ -770,6 +860,34 @@
       <div class="slbl">01 &nbsp; About</div>
       <h2>Hello, World.</h2>
       <p id="tw"><span class="cr"></span></p>
+      <div class="resume-grid" aria-label="Resume highlights">
+        <div class="resume-item">
+          <span class="resume-k">Education</span>
+          <div class="resume-v">M.S. Computer Science, Northeastern University, Seattle. Expected May 2026.</div>
+        </div>
+        <div class="resume-item">
+          <span class="resume-k">Focus</span>
+          <div class="resume-v">Workflow automation, backend systems, geospatial platforms, LLM applications, and data pipelines.</div>
+        </div>
+        <div class="resume-item">
+          <span class="resume-k">Looking For</span>
+          <div class="resume-v">Software Engineer roles across backend, AI systems, data platforms, and full-stack product engineering.</div>
+        </div>
+        <div class="resume-item">
+          <span class="resume-k">Contact</span>
+          <div class="resume-v">edwardxiongyx@gmail.com · LinkedIn: edwardx93 · GitHub: Edwardx258</div>
+        </div>
+      </div>
+      <div class="resume-actions">
+        <a class="print-link" href="assets/resume.pdf" download="Yixuan-Xiong-Resume.pdf">
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/download.svg" alt="">
+          Download Resume
+        </a>
+        <a class="print-link" href="assets/resume.pdf" target="_blank" rel="noopener">
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/external-link.svg" alt="">
+          Open PDF
+        </a>
+      </div>
     </div>
   </div>
 
@@ -792,24 +910,24 @@
       <div class="tl">
         <div class="ti">
           <div class="td"></div>
-          <div class="tco">Team Onni — OEM Workflow Product</div>
-          <div class="tro">Software Engineer · Grad Capstone</div>
-          <div class="tdt">2025 — Present</div>
-          <div class="tds">Built AI-powered OEM approval workflow with two-step automation, enriched notification engine, and auto-approval logic. Cross-functional collaboration with Andres, Yujing Cen, and Prof. Hu.</div>
+          <div class="tco">Seattle Office of Emergency Management</div>
+          <div class="tro">Software Engineer Intern · Seattle, WA</div>
+          <div class="tdt">Jan 2026 — Apr 2026</div>
+          <div class="tds">Served as technical architect on a 4-person team building an M365 workflow automation platform for 2,000+ annual requests; designed relational schema, event-driven notifications, instructor matching, and PII-compliant Power BI reporting.</div>
         </div>
         <div class="ti">
           <div class="td"></div>
-          <div class="tco">Independent Projects &amp; Research</div>
-          <div class="tro">ML / Quant Engineer</div>
-          <div class="tdt">2024 — Present</div>
-          <div class="tds">Developed quantitative investment tools with portfolio management, risk analysis, and backtesting. Integrated yfinance + NVIDIA/Kimi LLM APIs for AI-powered market insights.</div>
+          <div class="tco">Gavel and Quill</div>
+          <div class="tro">Software Engineer Intern · Seattle, WA</div>
+          <div class="tdt">May 2025 — Aug 2025</div>
+          <div class="tds">Built an offline-capable AWS EC2 map platform for energy site planning with PostGIS, NOAA and Census data ingestion, Leaflet vector tiles, geospatial ETL, GiST indexing, server-side caching, and optimistic locking for field sync conflicts.</div>
         </div>
         <div class="ti">
           <div class="td"></div>
-          <div class="tco">Northeastern University</div>
-          <div class="tro">Graduate Researcher</div>
-          <div class="tdt">2023 — 2025</div>
-          <div class="tds">Applied ML to real datasets: Manhattan luxury housing prediction (log-transformed RandomForest), credit card fraud detection (SVM vs LR), and Gilded Rose Kata with TDD.</div>
+          <div class="tco">Mandarin Oriental Hotel Group</div>
+          <div class="tro">Revenue Operations Engineer · Guangzhou, China</div>
+          <div class="tdt">Feb 2022 — Feb 2023</div>
+          <div class="tds">Built Python ETL pipelines aggregating booking data from Ctrip, Expedia, Booking.com, and direct channels into a unified schema; automated daily reports and developed a regression-based demand forecasting model for room pricing.</div>
         </div>
       </div>
     </div>
@@ -820,33 +938,8 @@
     <hr class="p-div">
     <div class="psec-in">
       <div class="slbl">04 &nbsp; Projects</div>
-      <h2>Print Jobs.</h2>
-      <div class="pg">
-        <div class="pc">
-          <span class="ptg">Python · LLM · Finance</span>
-          <div class="pti">Quant Investment Analyzer</div>
-          <div class="pde">Multi-phase portfolio management with risk analysis, performance tracking, and backtesting engine. Integrates yfinance + NVIDIA/Kimi LLM API.</div>
-          <a class="plk" href="#" target="_blank">GitHub →</a>
-        </div>
-        <div class="pc">
-          <span class="ptg">AI Agents · Discord · Python</span>
-          <div class="pti">OpenClaw AI Agent</div>
-          <div class="pde">Open-source agent framework with persistent cross-session state. Automates daily Discord workflows and solves duplicate job listing detection.</div>
-          <a class="plk" href="#" target="_blank">GitHub →</a>
-        </div>
-        <div class="pc">
-          <span class="ptg">Monitoring · ML · Python</span>
-          <div class="pti">West Coast AI Sentinel</div>
-          <div class="pde">AI-powered stock monitoring with real-time multi-ticker alerts. Full production architecture PRD with extensible agent-based market design.</div>
-          <a class="plk" href="#" target="_blank">GitHub →</a>
-        </div>
-        <div class="pc">
-          <span class="ptg">ML · Scikit-learn · TDD</span>
-          <div class="pti">Applied ML Portfolio</div>
-          <div class="pde">Housing price prediction (RandomForest), fraud detection (SVM vs LR), and Gilded Rose Kata refactoring with approval testing and TDD.</div>
-          <a class="plk" href="#" target="_blank">GitHub →</a>
-        </div>
-      </div>
+      <h2>Resume Projects.</h2>
+      <div class="pg" id="projectGrid"></div>
     </div>
   </div>
 
@@ -870,14 +963,14 @@
         </div>
         <div class="fg"><label class="fl">Message</label><textarea class="fta" name="message" placeholder="We'd love to have you interview for..." required></textarea></div>
         <div class="ff">
-          <span class="fn">Response within 24 hrs · Boston, MA</span>
+          <span class="fn">Response within 24 hrs · Seattle, WA</span>
           <button type="submit" class="sbtn" id="sbtn">🖨 &nbsp;Print &amp; Send</button>
         </div>
         <div class="sok" id="sok">✓ &nbsp;Print job received — will respond within 24 hrs.</div>
         <div class="sok" id="serr" style="color:#c44">✗ &nbsp;Something went wrong. Please email me directly.</div>
       </form>
       <div class="pf">
-        <div class="fc"><div>© 2026 Yixuan Zhang</div><div>Boston, MA · Open to Relocation</div></div>
+        <div class="fc"><div>© 2026 Yixuan Xiong</div><div>Seattle, WA · Software Engineer</div></div>
         <div class="fls">
           <a class="fb" href="https://github.com/Edwardx258" target="_blank" rel="noopener" title="GitHub">⌨</a>
           <a class="fb" href="https://www.linkedin.com/in/edwardx93/" target="_blank" rel="noopener" title="LinkedIn">in</a>
@@ -907,7 +1000,7 @@
     });
 
     /* ── typewriter ── */
-    const txt = "I'm a Master's student in ML & Statistics at Northeastern University (Class of 2026), passionate about building intelligent systems that solve real problems.\n\nMy work spans ML engineering, quantitative finance, and full-stack development — turning raw data into actionable insight, whether that's predicting market movements, automating complex workflows, or designing elegant APIs.\n\nCurrently seeking SWE / ML Engineering / Data Engineering roles. H-1B sponsorship required.";
+    const txt = "I'm a Master's student in Computer Science at Northeastern University in Seattle, focused on building reliable software systems for real-world operations.\n\nMy work spans workflow automation, geospatial data platforms, LLM applications, and production data pipelines — from M365 request systems and PostGIS map services to multi-agent matching tools and FastAPI backends.\n\nI like projects where messy operational data becomes usable software: structured schemas, safe automation, fast APIs, and clear dashboards.";
     const el = document.getElementById('tw');
     let i = 0, go = false;
     function tick() {
@@ -922,18 +1015,96 @@
     }, { threshold: .3 }).observe(document.getElementById('about'));
 
     /* ── skills ── */
+    const iconBase = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons';
     const sk = [
-      { n: 'Python', d: 5 }, { n: 'Machine Learning', d: 5 },
-      { n: 'Statistics', d: 5 }, { n: 'SQL / Databases', d: 4 },
-      { n: 'LLM / RAG', d: 4 }, { n: 'Data Engineering', d: 4 },
-      { n: 'React / TypeScript', d: 4 }, { n: 'AWS / Cloud', d: 3 }
+      { n: 'Python', d: 5, icon: `${iconBase}/python/python-original.svg` },
+      { n: 'Java / Spring Boot', d: 4, icon: `${iconBase}/java/java-original.svg` },
+      { n: 'TypeScript / React', d: 4, icon: `${iconBase}/typescript/typescript-original.svg` },
+      { n: 'FastAPI / Node.js', d: 4, icon: `${iconBase}/fastapi/fastapi-original.svg` },
+      { n: 'PostgreSQL / PostGIS', d: 5, icon: `${iconBase}/postgresql/postgresql-original.svg` },
+      { n: 'AWS / Azure', d: 4, icon: `${iconBase}/amazonwebservices/amazonwebservices-original-wordmark.svg` },
+      { n: 'Docker / Kubernetes', d: 4, icon: `${iconBase}/docker/docker-original.svg` },
+      { n: 'LangGraph / RAG', d: 4, icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/openai.svg' }
     ];
     const sg = document.getElementById('sg');
     sk.forEach(s => sg.insertAdjacentHTML('beforeend',
-      `<div class="si"><span class="sn">${s.n}</span><div class="dr">${
+      `<div class="si"><div class="skill-head"><span class="skill-icon"><img src="${s.icon}" alt="${s.n} logo"></span><span class="sn">${s.n}</span></div><div class="dr">${
         Array.from({ length: 5 }, (_, i) => `<div class="dot${i < s.d ? ' on' : ''}"></div>`).join('')
       }</div></div>`
     ));
+
+    /* ── projects ── */
+    const projects = [
+      {
+        name: 'ResponseMatch — LLM Emergency Response Matching System',
+        tags: ['Python', 'LangGraph', 'Claude API', 'ChromaDB', 'FastAPI'],
+        desc: 'Multi-agent emergency response matching system built as a follow-up to the Seattle OEM internship.',
+        chips: ['RAG', 'RAGAS', 'Multi-Agent'],
+        detail: [
+          'Architected a multi-agent system automating volunteer matching across 40+ Seattle 311 categories.',
+          'Parsed heterogeneous request data into urgency, geo-location, and keyword schemas.',
+          'Designed dual-track validation with LLM and rule-based scoring.',
+          'Integrated ChromaDB retrieval and improved RAGAS Faithfulness from 0.62 to 0.84 while reducing false-positive matches by 30%.'
+        ]
+      },
+      {
+        name: 'MaterniFlow — Multi-Agent Clinical Operations System',
+        tags: ['Python', 'FastAPI', 'GPT-4 API', 'PostgreSQL', 'Next.js'],
+        desc: 'Clinical operations prototype using a ReAct orchestrator, tool agents, and database safety guardrails.',
+        chips: ['Guardrails', 'PostgreSQL', 'ReAct'],
+        detail: [
+          'Designed a ReAct-based orchestrator that decomposes multi-step clinical requests into GPT-4 function calls.',
+          'Implemented 3 specialized tool agents with schema-validated parameters.',
+          'Built guardrail middleware for SQL injection detection, schema validation against a 12-table PostgreSQL model, and surgical slot conflict resolution.',
+          'Trained a logistic regression model on synthetic OB/GYN admission data and exposed length-of-stay predictions through FastAPI.'
+        ]
+      }
+    ];
+    const projectGrid = document.getElementById('projectGrid');
+    projects.forEach(project => projectGrid.insertAdjacentHTML('beforeend', `
+      <div class="pc">
+        <span class="ptg">${project.tags.join(' · ')}</span>
+        <div class="pti">${project.name}</div>
+        <div class="pde">${project.desc}</div>
+        ${project.detail ? `
+          <div class="project-detail" aria-hidden="true">
+            <div class="pde">
+              ${project.detail.map(line => `<p>${line}</p>`).join('')}
+            </div>
+          </div>
+        ` : ''}
+        <div class="project-meta">
+          ${project.chips.map(chip => `<span class="project-chip">${chip}</span>`).join('')}
+        </div>
+        <div class="project-links">
+          ${project.detail ? `
+            <button class="print-btn" type="button" data-print-project>
+              <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/printer.svg" alt="">
+              Print details
+            </button>
+          ` : ''}
+          ${project.url ? `
+            <a class="plk" href="${project.url}" target="_blank" rel="noopener">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="">
+              GitHub
+            </a>
+          ` : ''}
+        </div>
+      </div>
+    `));
+
+    document.querySelectorAll('[data-print-project]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.pc');
+        const detail = card.querySelector('.project-detail');
+        const willOpen = !card.classList.contains('printed');
+        card.classList.add('printing');
+        setTimeout(() => card.classList.remove('printing'), 700);
+        card.classList.toggle('printed', willOpen);
+        detail?.setAttribute('aria-hidden', willOpen ? 'false' : 'true');
+        btn.innerHTML = `<img src="https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/${willOpen ? 'x' : 'printer'}.svg" alt="">${willOpen ? 'Hide printout' : 'Print details'}`;
+      });
+    });
 
     /* ── project reveal ── */
     document.querySelectorAll('.pc').forEach((c, i) =>
