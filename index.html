@@ -1036,6 +1036,18 @@
     /* ── projects ── */
     const projects = [
       {
+        name: 'LeaseLens AI — Agentic Rental Decision Intelligence Platform',
+        tags: ['Python', 'LangGraph', 'PostgreSQL', 'Google Maps API', 'FastAPI', 'Docker'],
+        desc: 'Agentic rental evaluation platform that consolidates fragmented housing and neighborhood data into automated property comparison.',
+        chips: ['Agentic Workflow', 'Rental Intelligence', 'FastAPI'],
+        detail: [
+          'Reduced rental evaluation effort by about 80% by consolidating 8+ housing and neighborhood data sources into a decision pipeline.',
+          'Designed a LangGraph multi-agent workflow with Planner, Retrieval, Reasoning, Verifier, and Recommendation agents.',
+          'Grounded recommendations in normalized API evidence to reduce hallucinations, combining constraint filters with weighted ranking across 20+ rental signals.',
+          'Reduced recommendation latency by 65% through parallel API orchestration, semantic caching, and asynchronous FastAPI pipelines.'
+        ]
+      },
+      {
         name: 'ResponseMatch — LLM Emergency Response Matching System',
         tags: ['Python', 'LangGraph', 'Claude API', 'ChromaDB', 'FastAPI'],
         desc: 'Multi-agent emergency response matching system built as a follow-up to the Seattle OEM internship.',
@@ -1043,8 +1055,8 @@
         detail: [
           'Architected a multi-agent system automating volunteer matching across 40+ Seattle 311 categories.',
           'Parsed heterogeneous request data into urgency, geo-location, and keyword schemas.',
-          'Designed dual-track validation with LLM and rule-based scoring.',
-          'Integrated ChromaDB retrieval and improved RAGAS Faithfulness from 0.62 to 0.84 while reducing false-positive matches by 30%.'
+          'Designed dual-track validation combining LLM semantic matching with rule-based scoring, reducing false-positive matches by 30% versus an LLM-only baseline.',
+          'Integrated RAG via ChromaDB grounded on public handbooks and improved RAGAS Faithfulness from 0.62 to 0.84.'
         ]
       },
       {
