@@ -668,7 +668,7 @@
       .stk-sql, .stk-llm, .stk-react, .stk-neu { display: none; }
       .stk-avatar { left: 42% !important; }
     }
-  </style>
+  </style><link rel="stylesheet" href="refinement.css">
 </head>
 <body>
   <div id="pbar"></div>
@@ -828,6 +828,7 @@
     </div><!-- /printer-wrap -->
 
     <!-- Paper coming out -->
+    <div class="paper-output">
     <div class="paper">
       <div class="p-in">
         <div class="p-name">Yixuan “Edward” Xiong</div>
@@ -836,34 +837,36 @@
         <div class="p-row"><span class="k">Location</span><span class="v">Seattle, WA</span></div>
         <div class="p-row"><span class="k">Degree</span>  <span class="v">M.S. Computer Science</span></div>
         <div class="p-row"><span class="k">School</span>  <span class="v">Northeastern University</span></div>
-        <div class="p-row"><span class="k">Grad.</span>   <span class="v">May 2026</span></div>
+
         <hr class="p-rule">
         <div class="p-row"><span class="k">Focus</span><span class="v">Workflow Automation / Geospatial / AI</span></div>
         <div class="p-row"><span class="k">Stack</span>  <span class="v">Python · FastAPI · React · AWS</span></div>
-        <div class="resume-actions">
-          <a class="print-link" href="assets/resume.pdf" download="Yixuan-Xiong-Resume.pdf">
+        <p class="hero-copy">I turn complex operational workflows into reliable software.</p><div class="resume-actions"><a class="print-link primary-link" href="#projects">View Projects ↗</a>
+          <a class="print-link" href="assets/resume.pdf" target="_blank" rel="noopener">
             <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/printer.svg" alt="">
-            Print Resume PDF
+            View Resume
           </a>
         </div>
         <hr class="p-rule">
-        <div class="p-hint">▼ &nbsp; scroll to continue &nbsp; ▼</div>
+        <div class="hero-social"><a href="https://github.com/Edwardx258">GitHub ↗</a><a href="https://linkedin.com/in/edwardx93/">LinkedIn ↗</a><a href="mailto:edwardxiongyx@gmail.com">Email ↗</a></div><a class="p-hint" href="#about">↓ &nbsp; Scroll to next sheet</a>
       </div>
     </div>
+    </div><!-- /paper-output -->
 
   </section>
 
+  <div class="page-feed" aria-hidden="true"><span>END OF SHEET 01</span><span class="feed-track">↓</span><span>NEXT SHEET / ABOUT</span></div>
   <!-- ═══════ 01 ABOUT ═══════ -->
   <div class="psec" id="about">
     <hr class="p-div">
     <div class="psec-in">
       <div class="slbl">01 &nbsp; About</div>
       <h2>Hello, World.</h2>
-      <p id="tw"><span class="cr"></span></p>
+      <p id="tw">I build reliable software for real-world operations, with a focus on backend systems, geospatial platforms, and AI applications.<br><br>I like projects where messy operational data becomes usable software: structured schemas, safe automation, fast APIs, and clear dashboards.</p>
       <div class="resume-grid" aria-label="Resume highlights">
         <div class="resume-item">
           <span class="resume-k">Education</span>
-          <div class="resume-v">M.S. Computer Science, Northeastern University, Seattle. Expected May 2026.</div>
+          <div class="resume-v">M.S. Computer Science, Northeastern University, Seattle. Sep 2023 – May 2026.</div>
         </div>
         <div class="resume-item">
           <span class="resume-k">Focus</span>
@@ -938,8 +941,8 @@
     <hr class="p-div">
     <div class="psec-in">
       <div class="slbl">04 &nbsp; Projects</div>
-      <h2>Resume Projects.</h2>
-      <div class="pg" id="projectGrid"></div>
+      <h2>Selected Projects.</h2>
+      <div class="pg" id="projectGrid"><article class="pc show"><div class="project-number">PROJECT / 01</div><h3 class="pti">LeaseLens AI</h3><div class="project-subtitle">Agentic Rental Decision Intelligence Platform</div><p class="pde">Agentic rental evaluation platform that consolidates fragmented housing and neighborhood data into automated property comparison.</p><div class="project-meta"><span class="project-chip">Agentic Workflow</span><span class="project-chip">Rental Intelligence</span><span class="project-chip">FastAPI</span></div><span class="ptg">Python · LangGraph · PostgreSQL · Google Maps API · FastAPI · Docker</span><div class="project-links"><a class="print-link" href="leaselens.html">View Case Study ↗</a></div></article><article class="pc show"><div class="project-number">PROJECT / 02</div><h3 class="pti">ResponseMatch</h3><div class="project-subtitle">LLM Emergency Response Matching System</div><p class="pde">Multi-agent emergency response matching system built as a follow-up to the Seattle OEM internship.</p><div class="project-meta"><span class="project-chip">RAG</span><span class="project-chip">RAGAS</span><span class="project-chip">Multi-Agent</span></div><span class="ptg">Python · LangGraph · Claude API · ChromaDB · FastAPI</span><div class="project-links"><a class="print-link" href="responsematch.html">View Case Study ↗</a></div></article><article class="pc show"><div class="project-number">PROJECT / 03</div><h3 class="pti">MaterniFlow</h3><div class="project-subtitle">Multi-Agent Clinical Operations System</div><p class="pde">Clinical operations prototype using a ReAct orchestrator, tool agents, and database safety guardrails.</p><div class="project-meta"><span class="project-chip">Guardrails</span><span class="project-chip">PostgreSQL</span><span class="project-chip">ReAct</span></div><span class="ptg">Python · FastAPI · GPT-4 API · PostgreSQL · Next.js</span><div class="project-links"><a class="print-link" href="materniflow.html">View Case Study ↗</a></div></article></div>
     </div>
   </div>
 
@@ -992,27 +995,12 @@
       ico.textContent = dark ? '☾' : '☀';
     }
     const sv = localStorage.getItem('xp-theme');
-    setTheme(sv === 'dark' || (!sv && matchMedia('(prefers-color-scheme: dark)').matches));
+    setTheme(sv === 'dark');
     tog.addEventListener('click', () => {
       const dark = html.getAttribute('data-theme') !== 'dark';
       setTheme(dark);
       localStorage.setItem('xp-theme', dark ? 'dark' : 'light');
     });
-
-    /* ── typewriter ── */
-    const txt = "I'm a Master's student in Computer Science at Northeastern University in Seattle, focused on building reliable software systems for real-world operations.\n\nMy work spans workflow automation, geospatial data platforms, LLM applications, and production data pipelines — from M365 request systems and PostGIS map services to multi-agent matching tools and FastAPI backends.\n\nI like projects where messy operational data becomes usable software: structured schemas, safe automation, fast APIs, and clear dashboards.";
-    const el = document.getElementById('tw');
-    let i = 0, go = false;
-    function tick() {
-      if (i >= txt.length) { el.innerHTML = txt.replace(/\n/g, '<br>'); return; }
-      const c = txt[i];
-      el.innerHTML = txt.slice(0, i + 1).replace(/\n/g, '<br>') + '<span class="cr"></span>';
-      i++;
-      setTimeout(tick, c === '.' || c === '!' ? 90 : c === '\n' ? 250 : c === ',' ? 55 : 26);
-    }
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !go) { go = true; tick(); }
-    }, { threshold: .3 }).observe(document.getElementById('about'));
 
     /* ── skills ── */
     const iconBase = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons';
@@ -1032,98 +1020,6 @@
         Array.from({ length: 5 }, (_, i) => `<div class="dot${i < s.d ? ' on' : ''}"></div>`).join('')
       }</div></div>`
     ));
-
-    /* ── projects ── */
-    const projects = [
-      {
-        name: 'LeaseLens AI — Agentic Rental Decision Intelligence Platform',
-        tags: ['Python', 'LangGraph', 'PostgreSQL', 'Google Maps API', 'FastAPI', 'Docker'],
-        desc: 'Agentic rental evaluation platform that consolidates fragmented housing and neighborhood data into automated property comparison.',
-        chips: ['Agentic Workflow', 'Rental Intelligence', 'FastAPI'],
-        detail: [
-          'Reduced rental evaluation effort by about 80% by consolidating 8+ housing and neighborhood data sources into a decision pipeline.',
-          'Designed a LangGraph multi-agent workflow with Planner, Retrieval, Reasoning, Verifier, and Recommendation agents.',
-          'Grounded recommendations in normalized API evidence to reduce hallucinations, combining constraint filters with weighted ranking across 20+ rental signals.',
-          'Reduced recommendation latency by 65% through parallel API orchestration, semantic caching, and asynchronous FastAPI pipelines.'
-        ]
-      },
-      {
-        name: 'ResponseMatch — LLM Emergency Response Matching System',
-        tags: ['Python', 'LangGraph', 'Claude API', 'ChromaDB', 'FastAPI'],
-        desc: 'Multi-agent emergency response matching system built as a follow-up to the Seattle OEM internship.',
-        chips: ['RAG', 'RAGAS', 'Multi-Agent'],
-        detail: [
-          'Architected a multi-agent system automating volunteer matching across 40+ Seattle 311 categories.',
-          'Parsed heterogeneous request data into urgency, geo-location, and keyword schemas.',
-          'Designed dual-track validation combining LLM semantic matching with rule-based scoring, reducing false-positive matches by 30% versus an LLM-only baseline.',
-          'Integrated RAG via ChromaDB grounded on public handbooks and improved RAGAS Faithfulness from 0.62 to 0.84.'
-        ]
-      },
-      {
-        name: 'MaterniFlow — Multi-Agent Clinical Operations System',
-        tags: ['Python', 'FastAPI', 'GPT-4 API', 'PostgreSQL', 'Next.js'],
-        desc: 'Clinical operations prototype using a ReAct orchestrator, tool agents, and database safety guardrails.',
-        chips: ['Guardrails', 'PostgreSQL', 'ReAct'],
-        detail: [
-          'Designed a ReAct-based orchestrator that decomposes multi-step clinical requests into GPT-4 function calls.',
-          'Implemented 3 specialized tool agents with schema-validated parameters.',
-          'Built guardrail middleware for SQL injection detection, schema validation against a 12-table PostgreSQL model, and surgical slot conflict resolution.',
-          'Trained a logistic regression model on synthetic OB/GYN admission data and exposed length-of-stay predictions through FastAPI.'
-        ]
-      }
-    ];
-    const projectGrid = document.getElementById('projectGrid');
-    projects.forEach(project => projectGrid.insertAdjacentHTML('beforeend', `
-      <div class="pc">
-        <span class="ptg">${project.tags.join(' · ')}</span>
-        <div class="pti">${project.name}</div>
-        <div class="pde">${project.desc}</div>
-        ${project.detail ? `
-          <div class="project-detail" aria-hidden="true">
-            <div class="pde">
-              ${project.detail.map(line => `<p>${line}</p>`).join('')}
-            </div>
-          </div>
-        ` : ''}
-        <div class="project-meta">
-          ${project.chips.map(chip => `<span class="project-chip">${chip}</span>`).join('')}
-        </div>
-        <div class="project-links">
-          ${project.detail ? `
-            <button class="print-btn" type="button" data-print-project>
-              <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/printer.svg" alt="">
-              Print details
-            </button>
-          ` : ''}
-          ${project.url ? `
-            <a class="plk" href="${project.url}" target="_blank" rel="noopener">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="">
-              GitHub
-            </a>
-          ` : ''}
-        </div>
-      </div>
-    `));
-
-    document.querySelectorAll('[data-print-project]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.pc');
-        const detail = card.querySelector('.project-detail');
-        const willOpen = !card.classList.contains('printed');
-        card.classList.add('printing');
-        setTimeout(() => card.classList.remove('printing'), 700);
-        card.classList.toggle('printed', willOpen);
-        detail?.setAttribute('aria-hidden', willOpen ? 'false' : 'true');
-        btn.innerHTML = `<img src="https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/${willOpen ? 'x' : 'printer'}.svg" alt="">${willOpen ? 'Hide printout' : 'Print details'}`;
-      });
-    });
-
-    /* ── project reveal ── */
-    document.querySelectorAll('.pc').forEach((c, i) =>
-      new IntersectionObserver(([e]) => {
-        if (e.isIntersecting) setTimeout(() => c.classList.add('show'), i * 120);
-      }, { threshold: .15 }).observe(c)
-    );
 
     /* ── contact form (Web3Forms) ── */
     document.getElementById('cf').addEventListener('submit', async e => {
@@ -1278,5 +1174,16 @@
       });
     });
   </script>
-</body>
+<script>
+// Restart the print sequence on every document load; never gate it on saved state.
+const printPaper = document.querySelector('#hero .paper');
+const printStatus = document.querySelector('.scr-stat');
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  printPaper.classList.add('print-on-load');
+  document.querySelectorAll('.p-in > *').forEach((row, index) => row.style.setProperty('--row-delay', `${180 + index * 95}ms`));
+  const finishPrint = () => { if (printStatus) printStatus.innerHTML = '<div class="scr-dot"></div>Ready'; };
+  printPaper.addEventListener('animationend', event => { if (event.target === printPaper) finishPrint(); });
+  document.querySelector('#hero').addEventListener('focusin', () => { printPaper.classList.remove('print-on-load'); finishPrint(); }, {once:true});
+}
+</script></body>
 </html>
