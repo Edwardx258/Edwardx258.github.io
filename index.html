@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yixuan Xiong — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       /* warm cream printer palette (inspired by reference) */
@@ -55,7 +55,7 @@
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 36px 36px,
         var(--page-bg);
       color: var(--t1);
-      font-family: 'Courier Prime', monospace;
+      font-family: 'IBM Plex Sans', Arial, sans-serif;
       transition: background var(--ease), color var(--ease);
       overflow-x: hidden;
     }
@@ -174,7 +174,7 @@
       animation: pulse 2s ease-in-out infinite;
     }
     .led-d.on.s2 { animation-duration: 3.4s; }
-    .led-lbl { font-family: 'Space Mono', monospace; font-size: 7px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); }
+    .led-lbl { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); }
 
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
@@ -225,7 +225,7 @@
       gap: 5px; z-index: 1;
     }
     .scr-stat {
-      font-family: 'Space Mono', monospace; font-size: 8px;
+      font-family: 'Space Mono', monospace; font-size: 10px;
       letter-spacing: .1em; color: var(--t3);
       display: flex; align-items: center; gap: 5px;
     }
@@ -560,7 +560,7 @@
     .fl { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: .22em; text-transform: uppercase; color: var(--t3); }
     .fi, .fta {
       background: var(--bg); box-shadow: var(--ins); border: none; border-radius: 8px;
-      padding: 11px 15px; font-family: 'Courier Prime', monospace; font-size: 13px;
+      padding: 11px 15px; font-family: 'IBM Plex Sans', Arial, sans-serif; font-size: 13px;
       color: var(--t1); outline: none; width: 100%;
       transition: box-shadow var(--ease), background var(--ease), color var(--ease);
     }
@@ -638,7 +638,7 @@
     /* sticker tooltip hint */
     .sticker-hint {
       position: absolute; bottom: -26px; left: 50%; transform: translateX(-50%);
-      font-family: 'Space Mono', monospace; font-size: 7px; letter-spacing: .1em;
+      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .1em;
       color: var(--t3); white-space: nowrap;
       opacity: 0; transition: opacity .3s ease;
       pointer-events: none;
@@ -668,7 +668,7 @@
       .stk-sql, .stk-llm, .stk-react, .stk-neu { display: none; }
       .stk-avatar { left: 42% !important; }
     }
-  </style><link rel="stylesheet" href="refinement.css">
+  </style><link rel="stylesheet" href="refinement.css"><link rel="stylesheet" href="printer.css">
 </head>
 <body>
   <div id="pbar"></div>
@@ -692,7 +692,7 @@
       <!-- ── STICKERS (draggable) — positioned ABOVE printer + around LCD only,
             never over the button row, so they can't block clicks ── -->
       <!-- Python -->
-      <div class="sticker stk-python" style="--rot:-8deg; top:-34px; left:-22px;" data-sticker>
+      <div class="sticker stk-python" style="--rot:-8deg; top:-34px; left:-22px;" data-sticker="python">
         <div class="sticker-inner">
           <span class="sticker-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo"></span>
           <span class="sticker-label">Python</span>
@@ -700,7 +700,7 @@
       </div>
 
       <!-- Machine Learning -->
-      <div class="sticker stk-ml" style="--rot:5deg; top:-30px; right:24px;" data-sticker>
+      <div class="sticker stk-ml" style="--rot:5deg; top:-30px; right:24px;" data-sticker="ml">
         <div class="sticker-inner">
           <span class="sticker-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow logo"></span>
           <span class="sticker-label">ML / AI</span>
@@ -708,7 +708,7 @@
       </div>
 
       <!-- Personal avatar -->
-      <div class="sticker stk-avatar" style="--rot:-6deg; top:-22px; left:38%;" data-sticker>
+      <div class="sticker stk-avatar" style="--rot:-6deg; top:-22px; left:38%;" data-sticker="avatar">
         <div class="sticker-inner">
           <span class="sticker-icon">YX</span>
           <span class="sticker-label">YX</span>
@@ -716,7 +716,7 @@
       </div>
 
       <!-- React (LCD area, outside printer left) -->
-      <div class="sticker stk-react" style="--rot:-4deg; top:95px; left:-46px;" data-sticker>
+      <div class="sticker stk-react" style="--rot:-4deg; top:95px; left:-46px;" data-sticker="react">
         <div class="sticker-inner">
           <span class="sticker-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React logo"></span>
           <span class="sticker-label">React</span>
@@ -724,7 +724,7 @@
       </div>
 
       <!-- NEU Badge (LCD area, outside printer right) -->
-      <div class="sticker stk-neu" style="--rot:9deg; top:100px; right:-38px;" data-sticker>
+      <div class="sticker stk-neu" style="--rot:9deg; top:100px; right:-38px;" data-sticker="neu">
         <div class="sticker-inner">
           <span class="sticker-icon" style="font-size:18px;font-weight:700;font-family:'Space Mono',monospace;letter-spacing:0">NEU</span>
           <span class="sticker-label">Northeastern</span>
@@ -732,7 +732,7 @@
       </div>
 
       <!-- SQL (below printer, left) -->
-      <div class="sticker stk-sql" style="--rot:12deg; bottom:-30px; left:18%;" data-sticker>
+      <div class="sticker stk-sql" style="--rot:12deg; bottom:-30px; left:18%;" data-sticker="sql">
         <div class="sticker-inner">
           <span class="sticker-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL logo"></span>
           <span class="sticker-label">SQL</span>
@@ -740,7 +740,7 @@
       </div>
 
       <!-- LLM (below printer, right) -->
-      <div class="sticker stk-llm" style="--rot:-10deg; bottom:-34px; right:14%;" data-sticker>
+      <div class="sticker stk-llm" style="--rot:-10deg; bottom:-34px; right:14%;" data-sticker="llm">
         <div class="sticker-inner">
           <span class="sticker-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/openai.svg" alt="OpenAI logo"></span>
           <span class="sticker-label">LLM / RAG</span>
@@ -748,7 +748,7 @@
       </div>
 
       <!-- hint -->
-      <span class="sticker-hint">drag the stickers</span>
+      <span class="sticker-hint">drag a sticker into the paper slot to filter</span>
 
       <!-- ── PRINTER ── -->
       <div class="printer">
@@ -791,10 +791,10 @@
         <!-- LCD -->
         <div class="p-screen">
           <div class="scr-left">
-            <div class="scr-stat"><div class="scr-dot"></div>Printing</div>
-            <div class="scr-stat">Pages: ∞</div>
-            <div class="scr-stat">Ink: 94%</div>
-            <div class="scr-stat">Ready</div>
+            <div class="scr-stat" id="scrStatus"><div class="scr-dot"></div>Printing</div>
+            <div class="scr-stat" id="scrRepos">Seattle, WA</div>
+            <div class="scr-stat" id="scrUpdated">M.S. CS '26</div>
+            <div class="scr-stat" id="scrQuality">Qual: STD</div>
           </div>
           <div class="scr-div"></div>
           <div class="scr-right">
@@ -815,6 +815,15 @@
           <a class="cbtn" href="#experience"><span class="ci">③</span><span class="cl">Work</span></a>
           <a class="cbtn" href="#projects"><span class="ci">④</span><span class="cl">Projects</span></a>
           <a class="cbtn" href="#contact"><span class="ci">⑤</span><span class="cl">Contact</span></a>
+        </div>
+
+        <!-- Print quality: how much detail the sheets below show -->
+        <div class="p-quality" role="radiogroup" aria-label="Print quality">
+          <span class="pq-lbl">Quality</span>
+          <button type="button" class="pq-btn" role="radio" aria-checked="false" data-quality="draft">Draft</button>
+          <button type="button" class="pq-btn" role="radio" aria-checked="true" data-quality="standard">Standard</button>
+          <button type="button" class="pq-btn" role="radio" aria-checked="false" data-quality="high">High</button>
+          <span class="pq-hint" id="pqHint">Full profile</span>
         </div>
 
         <!-- Paper slot — paper emerges from the black opening below -->
@@ -862,8 +871,17 @@
     <div class="psec-in">
       <div class="slbl">01 &nbsp; About</div>
       <h2>Hello, World.</h2>
-      <p id="tw">I build reliable software for real-world operations, with a focus on backend systems, geospatial platforms, and AI applications.<br><br>I like projects where messy operational data becomes usable software: structured schemas, safe automation, fast APIs, and clear dashboards.</p>
-      <div class="resume-grid" aria-label="Resume highlights">
+      <div class="tldr q-brief">
+        <span class="resume-k">TL;DR</span>
+        <ul>
+          <li>M.S. Computer Science, Northeastern University (May 2026) · Seattle, WA</li>
+          <li>Looking for Software Engineer roles: backend, AI systems, data platforms, full-stack</li>
+          <li>3 roles: Seattle Office of Emergency Management, Gavel and Quill, Mandarin Oriental</li>
+          <li>Core stack: Python · FastAPI · React · AWS</li>
+        </ul>
+      </div>
+      <p id="tw" class="q-detail">I build reliable software for real-world operations, with a focus on backend systems, geospatial platforms, and AI applications.<br><br>I like projects where messy operational data becomes usable software: structured schemas, safe automation, fast APIs, and clear dashboards.</p>
+      <div class="resume-grid q-detail" aria-label="Resume highlights">
         <div class="resume-item">
           <span class="resume-k">Education</span>
           <div class="resume-v">M.S. Computer Science, Northeastern University, Seattle. Sep 2023 – May 2026.</div>
@@ -890,6 +908,10 @@
           <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/external-link.svg" alt="">
           Open PDF
         </a>
+        <button type="button" class="print-btn" id="printPage">
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/printer.svg" alt="">
+          Print This Page
+        </button>
       </div>
     </div>
   </div>
@@ -911,26 +933,29 @@
       <div class="slbl">03 &nbsp; Experience</div>
       <h2>Work History.</h2>
       <div class="tl">
-        <div class="ti">
+        <div class="ti" data-tags="sql">
           <div class="td"></div>
           <div class="tco">Seattle Office of Emergency Management</div>
           <div class="tro">Software Engineer Intern · Seattle, WA</div>
           <div class="tdt">Jan 2026 — Apr 2026</div>
-          <div class="tds">Served as technical architect on a 4-person team building an M365 workflow automation platform for 2,000+ annual requests; designed relational schema, event-driven notifications, instructor matching, and PII-compliant Power BI reporting.</div>
+          <div class="tds-brief q-brief">Technical architect for an M365 workflow automation platform handling 2,000+ requests a year.</div>
+          <div class="tds q-detail">Served as technical architect on a 4-person team building an M365 workflow automation platform for 2,000+ annual requests; designed relational schema, event-driven notifications, instructor matching, and PII-compliant Power BI reporting.</div>
         </div>
-        <div class="ti">
+        <div class="ti" data-tags="sql">
           <div class="td"></div>
           <div class="tco">Gavel and Quill</div>
           <div class="tro">Software Engineer Intern · Seattle, WA</div>
           <div class="tdt">May 2025 — Aug 2025</div>
-          <div class="tds">Built an offline-capable AWS EC2 map platform for energy site planning with PostGIS, NOAA and Census data ingestion, Leaflet vector tiles, geospatial ETL, GiST indexing, server-side caching, and optimistic locking for field sync conflicts.</div>
+          <div class="tds-brief q-brief">Built an offline-capable PostGIS map platform on AWS EC2 for energy site planning.</div>
+          <div class="tds q-detail">Built an offline-capable AWS EC2 map platform for energy site planning with PostGIS, NOAA and Census data ingestion, Leaflet vector tiles, geospatial ETL, GiST indexing, server-side caching, and optimistic locking for field sync conflicts.</div>
         </div>
-        <div class="ti">
+        <div class="ti" data-tags="python ml">
           <div class="td"></div>
           <div class="tco">Mandarin Oriental Hotel Group</div>
           <div class="tro">Revenue Operations Engineer · Guangzhou, China</div>
           <div class="tdt">Feb 2022 — Feb 2023</div>
-          <div class="tds">Built Python ETL pipelines aggregating booking data from Ctrip, Expedia, Booking.com, and direct channels into a unified schema; automated daily reports and developed a regression-based demand forecasting model for room pricing.</div>
+          <div class="tds-brief q-brief">Python ETL pipelines and a regression-based demand forecasting model for room pricing.</div>
+          <div class="tds q-detail">Built Python ETL pipelines aggregating booking data from Ctrip, Expedia, Booking.com, and direct channels into a unified schema; automated daily reports and developed a regression-based demand forecasting model for room pricing.</div>
         </div>
       </div>
     </div>
@@ -942,7 +967,7 @@
     <div class="psec-in">
       <div class="slbl">04 &nbsp; Projects</div>
       <h2>Selected Projects.</h2>
-      <div class="pg" id="projectGrid"><article class="pc show"><div class="project-number">PROJECT / 01</div><h3 class="pti">LeaseLens AI</h3><div class="project-subtitle">Agentic Rental Decision Intelligence Platform</div><p class="pde">Agentic rental evaluation platform that consolidates fragmented housing and neighborhood data into automated property comparison.</p><div class="project-meta"><span class="project-chip">Agentic Workflow</span><span class="project-chip">Rental Intelligence</span><span class="project-chip">FastAPI</span></div><span class="ptg">Python · LangGraph · PostgreSQL · Google Maps API · FastAPI · Docker</span><div class="project-links"><a class="print-link" href="leaselens.html">View Case Study ↗</a></div></article><article class="pc show"><div class="project-number">PROJECT / 02</div><h3 class="pti">ResponseMatch</h3><div class="project-subtitle">LLM Emergency Response Matching System</div><p class="pde">Multi-agent emergency response matching system built as a follow-up to the Seattle OEM internship.</p><div class="project-meta"><span class="project-chip">RAG</span><span class="project-chip">RAGAS</span><span class="project-chip">Multi-Agent</span></div><span class="ptg">Python · LangGraph · Claude API · ChromaDB · FastAPI</span><div class="project-links"><a class="print-link" href="responsematch.html">View Case Study ↗</a></div></article><article class="pc show"><div class="project-number">PROJECT / 03</div><h3 class="pti">MaterniFlow</h3><div class="project-subtitle">Multi-Agent Clinical Operations System</div><p class="pde">Clinical operations prototype using a ReAct orchestrator, tool agents, and database safety guardrails.</p><div class="project-meta"><span class="project-chip">Guardrails</span><span class="project-chip">PostgreSQL</span><span class="project-chip">ReAct</span></div><span class="ptg">Python · FastAPI · GPT-4 API · PostgreSQL · Next.js</span><div class="project-links"><a class="print-link" href="materniflow.html">View Case Study ↗</a></div></article></div>
+      <div class="pg" id="projectGrid"><article class="pc show" data-tags="python ml llm sql"><div class="project-number">PROJECT / 01</div><h3 class="pti">LeaseLens AI</h3><div class="project-subtitle">Agentic Rental Decision Intelligence Platform</div><p class="pde q-detail">Agentic rental evaluation platform that consolidates fragmented housing and neighborhood data into automated property comparison.</p><div class="project-meta q-detail"><span class="project-chip">Agentic Workflow</span><span class="project-chip">Rental Intelligence</span><span class="project-chip">FastAPI</span></div><span class="ptg">Python · LangGraph · PostgreSQL · Google Maps API · FastAPI · Docker</span><ul class="project-deep q-deep"><li>Reduced rental evaluation effort by about 80% by consolidating 8+ housing and neighborhood data sources into a decision pipeline.</li><li>Designed a LangGraph multi-agent workflow with Planner, Retrieval, Reasoning, Verifier, and Recommendation agents.</li><li>Grounded recommendations in normalized API evidence to reduce hallucinations, combining constraint filters with weighted ranking across 20+ rental signals.</li><li>Reduced recommendation latency by 65% through parallel API orchestration, semantic caching, and asynchronous FastAPI pipelines.</li></ul><div class="project-links"><a class="print-link" href="leaselens.html">View Case Study ↗</a><a class="print-link" href="leaselens.html#architecture">3D Architecture ↗</a></div></article><article class="pc show" data-tags="python ml llm"><div class="project-number">PROJECT / 02</div><h3 class="pti">ResponseMatch</h3><div class="project-subtitle">LLM Emergency Response Matching System</div><p class="pde q-detail">Multi-agent emergency response matching system built as a follow-up to the Seattle OEM internship.</p><div class="project-meta q-detail"><span class="project-chip">RAG</span><span class="project-chip">RAGAS</span><span class="project-chip">Multi-Agent</span></div><span class="ptg">Python · LangGraph · Claude API · ChromaDB · FastAPI</span><ul class="project-deep q-deep"><li>Architected a multi-agent system automating volunteer matching across 40+ Seattle 311 categories.</li><li>Parsed heterogeneous request data into urgency, geo-location, and keyword schemas.</li><li>Designed dual-track validation combining LLM semantic matching with rule-based scoring, reducing false-positive matches by 30% versus an LLM-only baseline.</li><li>Integrated RAG via ChromaDB grounded on public handbooks and improved RAGAS Faithfulness from 0.62 to 0.84.</li></ul><div class="project-links"><a class="print-link" href="responsematch.html">View Case Study ↗</a></div></article><article class="pc show" data-tags="python ml llm sql react"><div class="project-number">PROJECT / 03</div><h3 class="pti">MaterniFlow</h3><div class="project-subtitle">Multi-Agent Clinical Operations System</div><p class="pde q-detail">Clinical operations prototype using a ReAct orchestrator, tool agents, and database safety guardrails.</p><div class="project-meta q-detail"><span class="project-chip">Guardrails</span><span class="project-chip">PostgreSQL</span><span class="project-chip">ReAct</span></div><span class="ptg">Python · FastAPI · GPT-4 API · PostgreSQL · Next.js</span><ul class="project-deep q-deep"><li>Designed a ReAct-based orchestrator that decomposes multi-step clinical requests into GPT-4 function calls.</li><li>Implemented 3 specialized tool agents with schema-validated parameters.</li><li>Built guardrail middleware for SQL injection detection, schema validation against a 12-table PostgreSQL model, and surgical slot conflict resolution.</li><li>Trained a logistic regression model on synthetic OB/GYN admission data and exposed length-of-stay predictions through FastAPI.</li></ul><div class="project-links"><a class="print-link" href="materniflow.html">View Case Study ↗</a></div></article></div>
     </div>
   </div>
 
@@ -1111,7 +1136,7 @@
       function applyPos(x, y) {
         const rot = getComputedStyle(el).getPropertyValue('--rot') || '0deg';
         /* first apply unclamped */
-        el.style.transform = `rotate(${rot}) translate(${x}px, ${y}px)`;
+        el.style.transform = `translate(${x}px, ${y}px) rotate(${rot})`;
         /* clamp to viewport horizontally; reverse-correct using rect */
         const r = el.getBoundingClientRect();
         const vw = window.innerWidth;
@@ -1127,7 +1152,7 @@
         else if (absBottom > docH - 4) dy = (docH - 4) - absBottom;
         if (dx || dy) {
           x += dx; y += dy;
-          el.style.transform = `rotate(${rot}) translate(${x}px, ${y}px)`;
+          el.style.transform = `translate(${x}px, ${y}px) rotate(${rot})`;
         }
         el.dataset.dx = x;
         el.dataset.dy = y;
@@ -1181,9 +1206,11 @@ const printStatus = document.querySelector('.scr-stat');
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   printPaper.classList.add('print-on-load');
   document.querySelectorAll('.p-in > *').forEach((row, index) => row.style.setProperty('--row-delay', `${180 + index * 95}ms`));
-  const finishPrint = () => { if (printStatus) printStatus.innerHTML = '<div class="scr-dot"></div>Ready'; };
+  const finishPrint = () => { if (printStatus) printStatus.innerHTML = '<div class="scr-dot"></div>Open to work'; };
   printPaper.addEventListener('animationend', event => { if (event.target === printPaper) finishPrint(); });
   document.querySelector('#hero').addEventListener('focusin', () => { printPaper.classList.remove('print-on-load'); finishPrint(); }, {once:true});
 }
-</script></body>
+</script>
+<script src="printer.js"></script>
+</body>
 </html>
