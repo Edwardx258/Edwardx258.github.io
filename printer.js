@@ -221,6 +221,33 @@
   /* static fallbacks stay on screen if GitHub is unreachable or rate-limited */
   loadGitHub().catch(() => {});
 
+  /* ── printer tilt: lean toward the pointer (mouse only) ── */
+  const wrap = document.querySelector('.printer-wrap');
+  if (wrap && !reduceMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const MAX_DEG = 5;
+    const clamp = v => Math.max(-1, Math.min(1, v));
+    let nx = 0, ny = 0, raf = 0;
+    const apply = () => {
+      raf = 0;
+      wrap.style.setProperty('--tilt-x', `${(-ny * MAX_DEG).toFixed(2)}deg`);
+      wrap.style.setProperty('--tilt-y', `${(nx * MAX_DEG).toFixed(2)}deg`);
+      wrap.style.setProperty('--par-x', nx.toFixed(3));
+      wrap.style.setProperty('--par-y', ny.toFixed(3));
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(apply); };
+    window.addEventListener('mousemove', e => {
+      /* hold still while a sticker is being dragged, so it doesn't drift */
+      if (document.querySelector('.sticker.dragging')) return;
+      /* the wrapper isn't transformed, so its rect is a stable reference */
+      const r = wrap.getBoundingClientRect();
+      if (r.bottom < 0) return; /* scrolled past the hero */
+      nx = clamp((e.clientX - (r.left + r.width / 2)) / (innerWidth / 2));
+      ny = clamp((e.clientY - (r.top + r.height / 2)) / (innerHeight / 2));
+      schedule();
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', () => { nx = ny = 0; schedule(); });
+  }
+
   /* ── print button ── */
   document.getElementById('printPage')?.addEventListener('click', () => window.print());
 })();

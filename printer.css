@@ -102,6 +102,50 @@ html:not([data-quality="high"]) .q-deep { display: none; }
 }
 
 /* ═══════════════════════
+   3D ARCHITECTURE (case study pages, arch3d.js)
+═══════════════════════ */
+.arch-note { font-size: 15px !important; color: var(--t3) !important; margin-bottom: 14px; }
+.arch3d { border: 1px solid var(--paper-lo); border-radius: 4px; background: var(--bg); overflow: hidden; }
+.arch-stage { position: relative; height: 420px; }
+.arch-stage canvas { display: block; }
+.arch-labels { position: absolute; inset: 0; pointer-events: none; }
+.arch-label {
+  pointer-events: auto; cursor: pointer; text-align: center; white-space: nowrap;
+  background: var(--paper); color: var(--t1); border: 1px solid var(--paper-lo); border-radius: 3px;
+  padding: 3px 8px; font: 700 11px/1.35 'Space Mono', monospace;
+  transition: border-color .2s ease, color .2s ease;
+}
+.arch-label small { display: block; font-weight: 400; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--t3); }
+.arch-label.is-hover, .arch-label.is-active, .arch-label.is-selected { border-color: var(--ac); }
+.arch-label.is-selected { color: var(--ac); }
+.arch-bar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-top: 1px dashed var(--paper-lo); background: var(--paper); }
+.arch-caption { flex: 1; min-height: 3em; font-size: 15px; line-height: 1.5; color: var(--t2); }
+.arch-bar button {
+  background: var(--bg); color: var(--t1); border: 1px solid var(--paper-lo); border-radius: 4px;
+  padding: 8px 12px; cursor: pointer; font: 700 11px 'Space Mono', monospace; letter-spacing: .06em;
+}
+.arch-bar button:hover { color: var(--ac); }
+.arch-bar button:disabled { opacity: .4; cursor: default; }
+.arch-fallback .arch-stage { height: auto; padding: 28px 20px; color: var(--t3); font-size: 15px; }
+.arch-legend { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; padding: 0; }
+.case-section .arch-legend li { margin: 0; padding: 0; }
+.arch-legend button {
+  width: 100%; height: 100%; text-align: left; cursor: pointer;
+  background: transparent; color: var(--t2); border: 1px solid var(--paper-lo); border-radius: 4px;
+  padding: 10px 12px; font: 14px/1.5 'IBM Plex Sans', Arial, sans-serif;
+}
+.arch-legend strong { display: block; color: var(--t1); font: 700 12px/1.6 'Space Mono', monospace; }
+.arch-legend button:hover, .arch-legend button[aria-pressed="true"] { border-color: var(--ac); }
+@media (max-width: 600px) {
+  .arch-stage { height: 500px; }
+  .arch-label { font-size: 10px; padding: 2px 6px; }
+  .arch-label small { display: none; }
+  .arch-bar { flex-wrap: wrap; }
+  .arch-caption { flex-basis: 100%; }
+  .arch-legend { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════
    PRINT — Ctrl+P gives a clean, light résumé-style copy
    (prints at the selected quality: Draft → short brief)
 ═══════════════════════ */
@@ -114,7 +158,7 @@ html:not([data-quality="high"]) .q-deep { display: none; }
   body { background: #fff !important; font-size: 10.5pt; line-height: 1.45; }
 
   #pbar, #miniNav, .printer-wrap, .page-feed, .p-tear, #contact, .filter-ticket,
-  .p-hint, .resume-actions, .project-links, .case-nav, .case-footer { display: none !important; }
+  .p-hint, .resume-actions, .project-links, .case-nav, .case-footer, .arch3d, .arch-note { display: none !important; }
 
   #hero { display: block; min-height: 0; padding: 0; }
   .paper-output { width: auto; margin: 0; padding: 0; overflow: visible; }
@@ -148,4 +192,22 @@ html:not([data-quality="high"]) .q-deep { display: none; }
 
   a { color: inherit; text-decoration: none; }
   .hero-social a[href^="http"]::after { content: ' (' attr(href) ')'; font-size: 9pt; }
+}
+
+/* ═══════════════════════
+   PRINTER TILT — the body leans toward the pointer, stickers float above it
+   (mouse only; vars are set on .printer-wrap by printer.js)
+═══════════════════════ */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  /* perspective lives in the transform, not on .printer-wrap, so the
+     stickers aren't trapped in a new stacking context under the paper */
+  .printer {
+    transform: perspective(1400px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    transform-origin: 50% 100%; /* hinge on the paper slot so the sheet stays attached */
+    transition: transform .25s ease-out, box-shadow var(--ease), background var(--ease);
+  }
+  .sticker {
+    translate: calc(var(--par-x, 0) * 10px) calc(var(--par-y, 0) * 10px);
+    transition: box-shadow .15s ease, filter .15s ease, translate .25s ease-out;
+  }
 }
