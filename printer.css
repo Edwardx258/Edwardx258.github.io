@@ -1,0 +1,151 @@
+/* ═══════════════════════
+   PRINT QUALITY — how much detail the sheets show
+   (no data-quality attribute = standard, so the page still reads without JS)
+═══════════════════════ */
+html:not([data-quality="draft"]) .q-brief { display: none; }
+html[data-quality="draft"] .q-detail { display: none; }
+html:not([data-quality="high"]) .q-deep { display: none; }
+
+.p-quality {
+  display: flex; align-items: center; gap: 8px;
+  margin: -6px 0 16px;
+}
+.pq-lbl, .pq-hint {
+  font-family: 'Space Mono', monospace; font-size: 10px;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--t3);
+}
+.pq-lbl { margin-right: 4px; }
+.pq-hint { margin-left: auto; letter-spacing: .06em; text-transform: none; }
+.pq-btn {
+  background: var(--bg); box-shadow: var(--cvs);
+  border: none; border-radius: 8px; padding: 7px 12px;
+  font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--t2);
+  cursor: pointer; transition: box-shadow var(--ease), color var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+.pq-btn:hover { color: var(--t1); box-shadow: var(--cvm); }
+.pq-btn[aria-checked="true"] { box-shadow: var(--ins); color: var(--ac); }
+
+.tldr {
+  border: 1px solid var(--paper-lo); border-left: 4px solid var(--ac);
+  border-radius: 4px; padding: 18px 22px; margin-bottom: 24px;
+}
+.tldr ul, .project-deep { padding-left: 20px; }
+.tldr li { font-size: 16px; line-height: 1.7; color: var(--t2); }
+.tds-brief { font-size: 16px; line-height: 1.6; color: var(--t2); margin-top: 8px; }
+.project-deep { margin-top: 18px; }
+.project-deep li { font-size: 16px; line-height: 1.7; color: var(--t2); margin-bottom: 8px; }
+
+/* re-print the sheets when the quality changes */
+@keyframes reprint { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+.psec.reprint .psec-in { animation: reprint .6s steps(10, end) both; }
+.led-d.busy { animation-duration: .35s; }
+
+@media (max-width: 600px) {
+  .p-quality { gap: 6px; }
+  .pq-hint { display: none; }
+  .pq-btn { flex: 1; padding: 8px 4px; letter-spacing: .04em; }
+}
+
+/* ═══════════════════════
+   STICKER FILTERS — feed a sticker into the paper slot
+═══════════════════════ */
+.slot-wrap::before {
+  content: 'Drop to filter';
+  position: absolute; left: 50%; top: -17px; transform: translateX(-50%);
+  font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ac); white-space: nowrap;
+  opacity: 0; transition: opacity .2s ease; pointer-events: none;
+}
+.slot-wrap.feed-ready::before { opacity: 1; }
+.slot-wrap.feed-ready .slot {
+  box-shadow: inset 0 3px 8px rgba(0,0,0,0.85), 0 0 0 2px var(--ac2), 0 0 16px var(--ac2);
+}
+.sticker.fed { transition: transform .4s cubic-bezier(.5,0,.75,0), opacity .4s ease; opacity: 0; }
+.sticker.returning { transition: opacity .3s ease; }
+.sticker:focus-visible { outline: 3px solid var(--ac); outline-offset: 4px; }
+
+.ti, .pc { transition: opacity var(--ease), filter var(--ease); }
+.is-dimmed { opacity: .3; filter: grayscale(1); }
+.pc.is-match { border-color: var(--ac); box-shadow: 4px 4px 0 var(--ac); }
+.pc.is-match:hover { box-shadow: 4px 4px 0 var(--ac); }
+.ti.is-match .td { background: var(--ac); }
+
+.filter-ticket {
+  position: fixed; right: 20px; bottom: 20px; z-index: 900;
+  width: 230px; padding: 14px 16px 12px;
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--paper-lo); box-shadow: 4px 4px 0 var(--paper-lo);
+  font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .06em;
+  transform: translateY(calc(100% + 30px)); transition: transform .35s cubic-bezier(.4,0,.2,1);
+}
+.filter-ticket.show { transform: none; }
+.filter-ticket::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -8px; height: 8px;
+  background:
+    linear-gradient(135deg, var(--paper) 25%, transparent 25%) -4px 0 / 8px 8px,
+    linear-gradient(225deg, var(--paper) 25%, transparent 25%) -4px 0 / 8px 8px;
+}
+.ft-k { color: var(--t3); text-transform: uppercase; letter-spacing: .14em; font-size: 9px; }
+.ft-name { display: block; font-size: 15px; font-weight: 700; margin: 2px 0 6px; text-transform: uppercase; }
+.ft-count { color: var(--t2); padding-bottom: 10px; border-bottom: 1px dashed var(--paper-lo); }
+.ft-actions { display: flex; gap: 8px; margin-top: 10px; }
+.ft-actions button {
+  flex: 1; background: var(--bg); color: var(--t1); border: 1px solid var(--paper-lo);
+  border-radius: 4px; padding: 7px 0; cursor: pointer;
+  font: 700 10px 'Space Mono', monospace; letter-spacing: .1em; text-transform: uppercase;
+}
+.ft-actions button:hover { color: var(--ac); }
+@media (max-width: 600px) {
+  .filter-ticket { left: 12px; right: 12px; bottom: 12px; width: auto; }
+}
+
+/* ═══════════════════════
+   PRINT — Ctrl+P gives a clean, light résumé-style copy
+   (prints at the selected quality: Draft → short brief)
+═══════════════════════ */
+@media print {
+  :root, [data-theme="dark"] {
+    --page-bg: #fff; --bg: #fff; --paper: #fff; --paper-lo: #bbb;
+    --ink: #000; --t1: #000; --t2: #222; --t3: #555; --ac: #000; --ac2: #000;
+  }
+  @page { margin: 14mm; }
+  body { background: #fff !important; font-size: 10.5pt; line-height: 1.45; }
+
+  #pbar, #miniNav, .printer-wrap, .page-feed, .p-tear, #contact, .filter-ticket,
+  .p-hint, .resume-actions, .project-links, .case-nav, .case-footer { display: none !important; }
+
+  #hero { display: block; min-height: 0; padding: 0; }
+  .paper-output { width: auto; margin: 0; padding: 0; overflow: visible; }
+  .paper-output::after { display: none; }
+  .paper, .psec, .p-in, .psec-in, .case-shell {
+    width: auto !important; min-width: 0; margin: 0 !important;
+    box-shadow: none !important; border: none !important; background: #fff !important;
+  }
+  #hero .paper { animation: none !important; transform: none !important; clip-path: none !important; }
+  .paper::before, .paper::after, .psec::before, .psec::after,
+  #hero .paper .p-in::after { display: none !important; }
+  .p-in, .psec-in, .case-shell { padding: 8pt 0 !important; }
+  .p-div { margin: 0 !important; border-top: 1px solid #bbb; }
+  .psec.reprint .psec-in { animation: none; }
+
+  .p-name { font-size: 18pt; }
+  h1 { font-size: 20pt; }
+  h2 { font-size: 14pt; margin-bottom: 8pt; }
+  .slbl { margin-bottom: 4pt; }
+  .tco, .pti { font-size: 12pt; }
+  #tw, .tds, .tds-brief, .pde, .resume-v, .tldr li, .project-deep li,
+  .case-shell li, .case-lead, .hero-copy { font-size: 10.5pt !important; line-height: 1.5 !important; }
+  .resume-item, .tldr, .pc { border: 1px solid #bbb !important; box-shadow: none !important; padding: 8pt !important; }
+  .ti, .pc, .resume-item, .tldr { break-inside: avoid; }
+  .slbl, h2 { break-after: avoid; }
+  .skill-icon, .td, .dot { box-shadow: none !important; }
+  .td { border: 1px solid #888; }
+  .ti { margin-bottom: 12pt; }
+  .pg { gap: 10pt; }
+  .is-dimmed { opacity: 1; filter: none; }
+
+  a { color: inherit; text-decoration: none; }
+  .hero-social a[href^="http"]::after { content: ' (' attr(href) ')'; font-size: 9pt; }
+}
