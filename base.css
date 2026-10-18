@@ -48,7 +48,7 @@
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 36px 36px,
         var(--page-bg);
       color: var(--t1);
-      font-family: 'Courier Prime', monospace;
+      font-family: 'IBM Plex Sans', Arial, sans-serif;
       transition: background var(--ease), color var(--ease);
       overflow-x: hidden;
     }
@@ -167,7 +167,7 @@
       animation: pulse 2s ease-in-out infinite;
     }
     .led-d.on.s2 { animation-duration: 3.4s; }
-    .led-lbl { font-family: 'Space Mono', monospace; font-size: 7px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); }
+    .led-lbl { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); }
 
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
@@ -218,7 +218,7 @@
       gap: 5px; z-index: 1;
     }
     .scr-stat {
-      font-family: 'Space Mono', monospace; font-size: 8px;
+      font-family: 'Space Mono', monospace; font-size: 10px;
       letter-spacing: .1em; color: var(--t3);
       display: flex; align-items: center; gap: 5px;
     }
@@ -553,7 +553,7 @@
     .fl { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: .22em; text-transform: uppercase; color: var(--t3); }
     .fi, .fta {
       background: var(--bg); box-shadow: var(--ins); border: none; border-radius: 8px;
-      padding: 11px 15px; font-family: 'Courier Prime', monospace; font-size: 13px;
+      padding: 11px 15px; font-family: 'IBM Plex Sans', Arial, sans-serif; font-size: 13px;
       color: var(--t1); outline: none; width: 100%;
       transition: box-shadow var(--ease), background var(--ease), color var(--ease);
     }
@@ -631,7 +631,7 @@
     /* sticker tooltip hint */
     .sticker-hint {
       position: absolute; bottom: -26px; left: 50%; transform: translateX(-50%);
-      font-family: 'Space Mono', monospace; font-size: 7px; letter-spacing: .1em;
+      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .1em;
       color: var(--t3); white-space: nowrap;
       opacity: 0; transition: opacity .3s ease;
       pointer-events: none;
