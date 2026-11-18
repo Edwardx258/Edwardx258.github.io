@@ -1,1 +1,86 @@
-<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MaterniFlow — Yixuan Xiong</title><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="refinement.css"><link rel="stylesheet" href="printer.css"></head><body><main class="case-shell"><nav class="case-nav"><a href="index.html#projects">← Selected Projects</a><button type="button" id="case-theme" aria-label="Toggle color theme">Light / Dark</button></nav><div class="slbl">PROJECT / 03</div><h1>MaterniFlow</h1><div class="project-subtitle">Multi-Agent Clinical Operations System</div><p class="case-lead">Clinical operations prototype using a ReAct orchestrator, tool agents, and database safety guardrails.</p><div class="project-meta"><span class="project-chip">Python</span><span class="project-chip">FastAPI</span><span class="project-chip">GPT-4 API</span><span class="project-chip">PostgreSQL</span><span class="project-chip">Next.js</span></div><section class="case-section"><h2>Implementation &amp; outcomes</h2><ul><li>Designed a ReAct-based orchestrator that decomposes multi-step clinical requests into GPT-4 function calls.</li><li>Implemented 3 specialized tool agents with schema-validated parameters.</li><li>Built guardrail middleware for SQL injection detection, schema validation against a 12-table PostgreSQL model, and surgical slot conflict resolution.</li><li>Trained a logistic regression model on synthetic OB/GYN admission data and exposed length-of-stay predictions through FastAPI.</li></ul></section><footer class="case-footer"><a href="index.html#contact">Get in touch ↗</a></footer></main><script>const h=document.documentElement;h.dataset.theme=localStorage.getItem('xp-theme')||'light';document.getElementById('case-theme').onclick=()=>{h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';localStorage.setItem('xp-theme',h.dataset.theme)};</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MaterniFlow — Yixuan Xiong</title>
+<meta name="description" content="MaterniFlow: a multi-agent clinical operations system.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="assets/redesign/site.css">
+</head>
+<body class="case">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">YIXUAN XIONG</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="assets/resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section">
+    <div class="wrap">
+      <div class="divider"><span>PROJECT / 03 · CASE STUDY</span><a class="divider-link" href="index.html#projects">← All projects</a></div>
+
+      <div class="case-head">
+        <span class="status status--live">JAN 2026</span>
+        <h1>MaterniFlow</h1>
+        <p class="case-sub">Multi-Agent Clinical Operations System</p>
+      </div>
+      <p class="case-lede">A clinical operations prototype: a ReAct orchestrator, specialized tool agents and database safety guardrails.</p>
+
+      <article class="row">
+        <div class="row-meta"><span class="row-no">STACK</span></div>
+        <div class="row-body">
+          <h2>Tech stack</h2>
+          <ul class="tags" aria-label="Tech stack"><li class="tag">Python</li><li class="tag">FastAPI</li><li class="tag">GPT-4 API</li><li class="tag">PostgreSQL</li><li class="tag">Next.js</li></ul>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-meta"><span class="row-no">RESULTS</span></div>
+        <div class="row-body">
+          <h2>Results</h2>
+          <dl class="stats">
+            <div><dt>UNSAFE DB WRITES</dt><dd>0 of 200+ test queries</dd></div>
+            <div><dt>TOOL AGENTS</dt><dd>3</dd></div>
+            <div><dt>TRAINING RECORDS</dt><dd>1,500 synthetic</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-meta"><span class="row-no">BUILT</span></div>
+        <div class="row-body">
+          <h2>Implementation</h2>
+          <ul class="bullets">
+            <li>Designed a ReAct-based orchestrator agent that decomposes multi-step clinical requests (e.g. bed transfer + surgery scheduling) into tool calls using GPT-4 function calling.</li>
+            <li>Implemented 3 specialized tool agents with schema-validated parameters.</li>
+            <li>Built guardrail middleware intercepting LLM database operations for SQL injection detection, schema validation against a 12-table PostgreSQL model, and surgical slot conflict resolution; zero unsafe writes across 200+ test queries.</li>
+            <li>Trained a logistic regression model on synthetic OB/GYN admission data (1,500 records) to predict patient length-of-stay, served through a FastAPI endpoint.</li>
+          </ul>
+        </div>
+      </article>
+
+      <div class="case-actions">
+        <a class="btn btn-solid btn-sm" href="index.html#projects">← All projects</a>
+        <a class="btn btn-line btn-sm" href="index.html#contact">Get in touch ↗</a>
+      </div>
+
+      <div class="divider divider--end">
+        <span>END OF CASE STUDY</span>
+        <span>© 2026 Yixuan Xiong</span>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
