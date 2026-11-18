@@ -186,14 +186,15 @@
 
     function paperHTML(tag) {
       if (!tag) {
-        return '<div class="pl pl-row" style="--i:0"><span>SHEET 01 — HELLO</span><span>QUAL: STD</span></div>' +
+        // keep in sync with the default sheet in index.html
+        return '<div class="pl pl-row" style="--i:0"><span>SHEET 01 — RESULTS</span><span>QUAL: STD</span></div>' +
           '<div class="pl pl-name" style="--i:1">Yixuan Xiong</div>' +
-          '<div class="pl" style="--i:2">Software Engineer / AI Systems</div>' +
+          '<div class="pl" style="--i:2">Selected results · internships</div>' +
           '<div class="pl pl-rule" style="--i:3"></div>' +
-          '<div class="pl pl-kv" style="--i:4"><span>LOC</span><span>Seattle, WA</span></div>' +
-          '<div class="pl pl-kv" style="--i:5"><span>DEG</span><span>M.S. CS · Northeastern</span></div>' +
-          '<div class="pl pl-kv" style="--i:6"><span>STACK</span><span>Python · FastAPI · React · AWS</span></div>' +
-          '<div class="pl pl-foot" style="--i:7"><span>END OF SHEET 01</span><span aria-hidden="true">↓</span></div>';
+          '<div class="pl pl-stat" style="--i:4"><b>−83%</b><span>request processing time · Seattle OEM</span></div>' +
+          '<div class="pl pl-stat" style="--i:5"><b>60→80%</b><span>match accuracy · Seattle OEM</span></div>' +
+          '<div class="pl pl-stat" style="--i:6"><b>−60%</b><span>map query latency · Gavel and Quill</span></div>' +
+          '<div class="pl pl-foot" style="--i:7"><span>END OF SHEET 01</span><a class="pl-more" href="#experience">Work history ↓</a></div>';
       }
       var matches = cards.filter(function (c) { return cardTags(c).indexOf(tag) >= 0; });
       var rows = matches.map(function (c, i) {

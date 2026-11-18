@@ -40,7 +40,10 @@ a:hover{color:#000}
 .hero-stage{position:relative;max-width:1280px;margin:0 auto;padding:40px 40px 48px}
 .hero-grid{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:48px 96px;min-height:560px}
 .hero-text{flex:1 1 440px;max-width:560px;display:flex;flex-direction:column;gap:18px}
-.eyebrow{margin:0;font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--ink-4)}
+.hero-id{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.open-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:#fff;border:1.5px solid var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.1em}
+.open-badge i{width:8px;height:8px;border-radius:4px;background:#2E9E4F;box-shadow:0 0 0 3px rgba(46,158,79,.2)}
+.hero-name{margin:0;font-size:26px;font-weight:700;letter-spacing:-.01em}
 .hero h1{margin:0;font-size:clamp(38px,5.2vw,54px);line-height:1.04;letter-spacing:-.025em;font-weight:700}
 .hero-line{display:block;overflow:hidden;padding-bottom:4px}
 .hero-line>span{display:block}
@@ -62,7 +65,7 @@ a:hover{color:#000}
 .links a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--mono);font-size:13px}
 
 /* Opening sequence (only with JS, so no-JS visitors see everything) */
-.js .eyebrow{animation:fadeUp 600ms var(--ease) 880ms both}
+.js .hero-id{animation:fadeUp 600ms var(--ease) 880ms both}
 .js .hero-line>span{animation:rise 820ms var(--ease) calc(1020ms + var(--i) * 90ms) both}
 .js .sub{animation:fadeUp 700ms var(--ease) 1390ms both}
 .js .facts{animation:fadeUp 700ms var(--ease) 1510ms both}
@@ -99,6 +102,11 @@ a:hover{color:#000}
 .pl-rule{border-top:1.5px dashed var(--ink)}
 .pl-kv>span:first-child{flex:0 0 52px;color:var(--ink-4)}
 .pl-foot{margin-top:auto;padding-top:12px;border-top:1.5px dashed #B9B5AC;justify-content:space-between;align-items:center;color:var(--ink-4)}
+.pl-stat{display:flex;gap:12px;align-items:baseline}
+.pl-stat b{flex:0 0 104px;white-space:nowrap;font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.pl-rule + .pl-stat b{color:var(--accent)}
+.pl-stat span{font-size:11px;line-height:1.4;color:var(--ink-2)}
+.pl-more{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);font-family:var(--mono);font-size:12px}
 .pl-link{display:flex;justify-content:space-between;align-items:center;min-height:24px;color:var(--ink);text-decoration:none}
 .pl-link:hover{text-decoration:underline}
 .eject{min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);font-family:var(--mono);font-size:12px;cursor:pointer}
@@ -280,7 +288,7 @@ html:not(.js) .sticker{display:none}
   .sec-head{padding:8pt 0}
   .sec-head h2,.contact-info h2,.case-head h1{font-size:18pt}
   /* nothing waits for scroll or animation on paper */
-  .js [data-reveal],.js .hero-line>span,.js .eyebrow,.js .sub,.js .facts{opacity:1!important;transform:none!important;animation:none!important}
+  .js [data-reveal],.js .hero-line>span,.js .hero-id,.js .sub,.js .facts{opacity:1!important;transform:none!important;animation:none!important}
   .card.is-dim .card-body{opacity:1}
   .card-body{border:1px solid #999;box-shadow:none;transform:none!important;padding:12pt}
   .row,.card,.contact-list li{break-inside:avoid}
