@@ -251,3 +251,56 @@ html:not(.js) .sticker{display:none}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:1ms !important;animation-delay:0ms !important;animation-iteration-count:1 !important;transition-duration:1ms !important;transition-delay:0ms !important}
 }
+
+/* ===== Case study pages ===== */
+.case-head{padding:40px 0 28px;display:flex;flex-direction:column;gap:12px}
+.case-head h1{margin:0;font-size:clamp(40px,6vw,64px);line-height:1.02;letter-spacing:-.03em}
+.case-sub{margin:0;font-size:18px;color:var(--ink-2)}
+.status{align-self:flex-start;font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:6px 10px;border-radius:999px;border:1.5px solid var(--ink);background:#fff}
+.status--live{background:var(--accent);border-color:var(--accent)}
+.case-lede{margin:0 0 28px;font-size:20px;line-height:1.5;max-width:64ch}
+.case-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.case .row-meta{flex-basis:160px}
+.case .row-body h2{margin:0;font-size:24px;line-height:1.2;letter-spacing:-.01em}
+.stats{display:flex;flex-wrap:wrap;gap:16px 40px;margin:4px 0 0;padding:0}
+.stats>div{display:flex;flex-direction:column;gap:2px}
+.stats dt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-3)}
+.stats dd{margin:0;font-size:24px;font-weight:700;letter-spacing:-.01em}
+
+/* ===== Print: a clean résumé-style copy ===== */
+@media print{
+  @page{margin:14mm}
+  :root{--desk:#fff}
+  body{background:#fff;font-size:11pt}
+  .nav,.skip,.printer-wrap,.tray,.sticker,.filters,.card-cta,.ring-svg,.contact-tray,.cta,.links,.divider,.case-actions{display:none!important}
+  .hero-stage,.wrap{padding-left:0;padding-right:0}
+  .hero-grid{min-height:0;display:block}
+  .hero h1{font-size:24pt}
+  .section{padding:12pt 0}
+  .sec-head{padding:8pt 0}
+  .sec-head h2,.contact-info h2,.case-head h1{font-size:18pt}
+  /* nothing waits for scroll or animation on paper */
+  .js [data-reveal],.js .hero-line>span,.js .eyebrow,.js .sub,.js .facts{opacity:1!important;transform:none!important;animation:none!important}
+  .card.is-dim .card-body{opacity:1}
+  .card-body{border:1px solid #999;box-shadow:none;transform:none!important;padding:12pt}
+  .row,.card,.contact-list li{break-inside:avoid}
+  .sec-head,.kicker,.case-head{break-after:avoid}
+  /* compact rows: dates in a narrow column, print-sized type */
+  .row{display:grid;grid-template-columns:110pt 1fr;gap:4pt 16pt;padding:10pt 0}
+  .row-meta,.card-meta{flex:none;gap:2pt;font-size:8.5pt}
+  .row-body,.card-main{gap:4pt}
+  .row-body h3,.card-title h3{font-size:13pt}
+  .role,.card-sub,.note{font-size:10pt}
+  .summary{font-size:10.5pt;margin:0}
+  .bullets{gap:2pt}
+  .bullets li{font-size:9.5pt;line-height:1.4}
+  .tag{font-size:7.5pt;padding:1pt 6pt}
+  .card-body{display:grid;grid-template-columns:150pt 1fr;gap:6pt 16pt}
+  .scale{padding:4pt 0}
+  .scale b{font-size:14pt}
+  .scale span,.legend dd{font-size:9.5pt}
+  .card-head{gap:6pt}
+  .facts dd,.sub,.lede,.case-lede,.contact-list .v{font-size:10.5pt}
+  .contact-list a{min-height:0;padding:4pt 0}
+  a{text-decoration:none;color:#000}
+}

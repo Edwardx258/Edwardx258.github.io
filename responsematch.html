@@ -1,1 +1,85 @@
-<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ResponseMatch — Yixuan Xiong</title><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="refinement.css"><link rel="stylesheet" href="printer.css"></head><body><main class="case-shell"><nav class="case-nav"><a href="index.html#projects">← Selected Projects</a><button type="button" id="case-theme" aria-label="Toggle color theme">Light / Dark</button></nav><div class="slbl">PROJECT / 02 · IN PROGRESS</div><h1>ResponseMatch</h1><div class="project-subtitle">LLM Emergency Response Matching System</div><p class="case-lead">Matching community service requests (Seattle 311 style) to volunteers, built as a self-initiated follow-up to the Seattle OEM internship. Work in progress.</p><div class="project-meta"><span class="project-chip">Python</span><span class="project-chip">LangGraph</span><span class="project-chip">DeepSeek</span><span class="project-chip">ChromaDB</span><span class="project-chip">FastAPI</span></div><section class="case-section"><h2>Built so far</h2><ul><li>A LangGraph workflow that parses each request into urgency, required skills, certifications and languages.</li><li>Dual-track scoring: rule-based hard constraints (availability, range, certifications, language) run in parallel with an LLM judge grounded in handbook passages retrieved from ChromaDB; volunteers are recommended only where both tracks agree.</li><li>A pluggable LLM backend (DeepSeek by default, Claude supported), a FastAPI service and an offline test suite.</li></ul></section><section class="case-section"><h2>Next</h2><ul><li>Ingest public preparedness handbooks and Seattle 311 open data.</li><li>Build a labelled evaluation set and measure false positives against an LLM-only baseline; then add RAGAS faithfulness.</li></ul></section><section class="case-section"><h2>Code</h2><p><a href="https://github.com/Edwardx258/ResponseMatch">github.com/Edwardx258/ResponseMatch ↗</a></p></section><footer class="case-footer"><a href="index.html#contact">Get in touch ↗</a></footer></main><script>const h=document.documentElement;h.dataset.theme=localStorage.getItem('xp-theme')||'light';document.getElementById('case-theme').onclick=()=>{h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';localStorage.setItem('xp-theme',h.dataset.theme)};</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ResponseMatch — Yixuan Xiong</title>
+<meta name="description" content="ResponseMatch: matching community service requests to volunteers, in progress.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="assets/redesign/site.css">
+</head>
+<body class="case">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">YIXUAN XIONG</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="assets/resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section">
+    <div class="wrap">
+      <div class="divider"><span>PROJECT / 02 · CASE STUDY</span><a class="divider-link" href="index.html#projects">← All projects</a></div>
+
+      <div class="case-head">
+        <span class="status">IN PROGRESS</span>
+        <h1>ResponseMatch</h1>
+        <p class="case-sub">LLM Emergency Response Matching System</p>
+      </div>
+      <p class="case-lede">Matching community service requests (Seattle 311 style) to volunteers, built as a self-initiated follow-up to my Seattle OEM internship. Work in progress.</p>
+
+      <article class="row">
+        <div class="row-meta"><span class="row-no">STACK</span></div>
+        <div class="row-body">
+          <h2>Tech stack</h2>
+          <ul class="tags" aria-label="Tech stack"><li class="tag">Python</li><li class="tag">LangGraph</li><li class="tag">DeepSeek</li><li class="tag">ChromaDB</li><li class="tag">FastAPI</li></ul>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-meta"><span class="row-no">BUILT</span></div>
+        <div class="row-body">
+          <h2>Built so far</h2>
+          <ul class="bullets">
+            <li>A LangGraph workflow that parses each request into urgency, required skills, certifications and languages.</li>
+            <li>Dual-track scoring: rule-based hard constraints (availability, range, certifications, language) run in parallel with an LLM judge grounded in handbook passages retrieved from ChromaDB; volunteers are recommended only where both tracks agree.</li>
+            <li>A pluggable LLM backend (DeepSeek by default, Claude supported), a FastAPI service and an offline test suite.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="row-meta"><span class="row-no">NEXT</span></div>
+        <div class="row-body">
+          <h2>What comes next</h2>
+          <ul class="bullets">
+            <li>Ingest public preparedness handbooks and Seattle 311 open data.</li>
+            <li>Build a labelled evaluation set and measure false positives against an LLM-only baseline; then add RAGAS faithfulness.</li>
+          </ul>
+        </div>
+      </article>
+
+      <div class="case-actions">
+        <a class="btn btn-solid btn-sm" href="index.html#projects">← All projects</a>
+        <a class="btn btn-line btn-sm" href="https://github.com/Edwardx258/ResponseMatch">Code on GitHub ↗</a>
+        <a class="btn btn-line btn-sm" href="index.html#contact">Get in touch ↗</a>
+      </div>
+
+      <div class="divider divider--end">
+        <span>END OF CASE STUDY</span>
+        <span>© 2026 Yixuan Xiong</span>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

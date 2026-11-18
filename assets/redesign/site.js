@@ -121,6 +121,9 @@
     var live = $('#print-status');
     var slots = $$('[data-slot]', stage);
     var K = 260, DAMP = 20, GRAVITY = 2600;
+    // Ejecting is slower on purpose: the sticker eases up out of the slot,
+    // then a softer spring glides it home with a small settle.
+    var EJECT_S = 0.45, K_SOFT = 160, DAMP_SOFT = 17;
     var inP = null, raf = 0, last = 0, zTop = 10, printTimer = 0;
 
     var st = $$('.sticker', stage).map(function (el, i) {
@@ -229,7 +232,8 @@
 
     function ejectSticker(o) {
       if (o.phase === 'in' || o.phase === 'drop') {
-        o.phase = 'eject'; o.vy = -560; o.vx = 0; o.x = o.aimX;
+        o.phase = 'eject'; o.vx = 0; o.vy = 0; o.x = o.aimX;
+        o.ejectT = 0; o.ejectFrom = o.y; o.ejectTo = o.slotY - o.el.offsetHeight - 12;
         if (reduce) { o.phase = null; o.x = o.hx; o.y = o.hy; o.vy = 0; }
       } else {
         o.phase = null; o.tx = o.hx; o.ty = o.hy;
@@ -242,6 +246,7 @@
     function drop(s) {
       if (inP && inP !== s) ejectSticker(inP);
       inP = s;
+      s.soft = false;
       var g = slotGeom(s);
       s.aimX = g.aimX; s.slotY = g.slotY;
       s.tx = s.aimX; s.ty = s.slotY - s.el.offsetHeight - 8;
@@ -339,18 +344,22 @@
         } else if (s.phase === 'in') {
           s.x = s.aimX; s.y = s.slotY;
         } else if (s.phase === 'eject') {
-          s.x = s.aimX; s.y += s.vy * dt; active = true;
-          if (s.y + s.el.offsetHeight < s.slotY - 6) { s.phase = null; s.vy = -120; s.tx = s.hx; s.ty = s.hy; }
+          s.ejectT += dt;
+          var t = Math.min(1, s.ejectT / EJECT_S);
+          var ease = 1 - Math.pow(1 - t, 3); // ease-out: quick start, slow finish
+          s.x = s.aimX; s.y = s.ejectFrom + (s.ejectTo - s.ejectFrom) * ease; active = true;
+          if (t >= 1) { s.phase = null; s.vx = 0; s.vy = 0; s.vs = 1.2; s.soft = true; s.tx = s.hx; s.ty = s.hy; }
         } else {
-          var ax = -K * (s.x - s.tx) - DAMP * s.vx;
-          var ay = -K * (s.y - s.ty) - DAMP * s.vy;
+          var k = s.soft ? K_SOFT : K, damp = s.soft ? DAMP_SOFT : DAMP;
+          var ax = -k * (s.x - s.tx) - damp * s.vx;
+          var ay = -k * (s.y - s.ty) - damp * s.vy;
           s.vx += ax * dt; s.vy += ay * dt;
           s.x += s.vx * dt; s.y += s.vy * dt;
           var close = Math.abs(s.x - s.tx) < 1.5 && Math.abs(s.y - s.ty) < 1.5;
           if (s.phase === 'aim' && close && Math.abs(s.vx) < 60 && Math.abs(s.vy) < 60) {
             s.phase = 'drop'; s.vy = 80; s.x = s.aimX; active = true;
           } else if (Math.abs(s.x - s.tx) < 0.3 && Math.abs(s.y - s.ty) < 0.3 && Math.abs(s.vx) < 4 && Math.abs(s.vy) < 4) {
-            s.x = s.tx; s.y = s.ty; s.vx = 0; s.vy = 0;
+            s.x = s.tx; s.y = s.ty; s.vx = 0; s.vy = 0; s.soft = false;
           } else { active = true; }
         }
         var ts = s.drag ? 1.08 : 1;
