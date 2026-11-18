@@ -123,7 +123,7 @@
     var K = 260, DAMP = 20, GRAVITY = 2600;
     // Ejecting is slower on purpose: the sticker eases up out of the slot,
     // then a softer spring glides it home with a small settle.
-    var EJECT_S = 0.75, K_SOFT = 90, DAMP_SOFT = 13;
+    var EJECT_S = 0.45, K_SOFT = 160, DAMP_SOFT = 17;
     var inP = null, raf = 0, last = 0, zTop = 10, printTimer = 0;
 
     var st = $$('.sticker', stage).map(function (el, i) {
