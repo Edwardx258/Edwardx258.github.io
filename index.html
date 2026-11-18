@@ -279,10 +279,10 @@
         <article class="card" data-project data-reveal style="--d:120ms" data-name="ResponseMatch" data-href="responsematch.html" data-tags="Python|LLM / RAG|ML / AI">
           <div class="card-body">
             <div class="card-meta">
-              <div class="card-top"><strong>PROJECT / 02</strong><span>APR 2026</span></div>
-              <div class="scale"><b>40+</b><span>Seattle 311 request categories matched</span></div>
+              <div class="card-top"><strong>PROJECT / 02</strong><span>IN PROGRESS</span></div>
+              <div class="scale"><b>2</b><span>independent scoring tracks: rules and an LLM judge</span></div>
               <ul class="tags" aria-label="Tech stack">
-                <li class="tag">Python</li><li class="tag">LangGraph</li><li class="tag">Claude API</li><li class="tag">ChromaDB</li><li class="tag">RAGAS</li><li class="tag">FastAPI</li>
+                <li class="tag">Python</li><li class="tag">LangGraph</li><li class="tag">DeepSeek</li><li class="tag">ChromaDB</li><li class="tag">FastAPI</li>
               </ul>
             </div>
             <div class="card-main">
@@ -294,26 +294,17 @@
                 </div>
                 <div class="rings">
                   <dl class="legend">
-                    <div><dt><i class="dot0"></i>FAITHFULNESS</dt><dd>0.62 → 0.84</dd></div>
-                    <div><dt><i class="dot1"></i>FALSE POSITIVES CUT</dt><dd>30%</dd></div>
+                    <div><dt><i class="dot0"></i>STATUS</dt><dd>Working prototype</dd></div>
+                    <div><dt><i class="dot1"></i>NEXT</dt><dd>Labelled evaluation</dd></div>
                   </dl>
-                  <svg class="ring-svg" viewBox="0 0 120 120" aria-hidden="true">
-                    <g transform="rotate(-90 60 60)">
-                      <circle class="t0" cx="60" cy="60" r="52"></circle>
-                      <circle class="ring-fill c0" cx="60" cy="60" r="52" data-v="0.84" data-k="0"></circle>
-                      <circle class="ring-fill ring-ghost" cx="60" cy="60" r="52" data-v="0.62" data-k="0"></circle>
-                      <circle class="t1" cx="60" cy="60" r="37"></circle>
-                      <circle class="ring-fill c1" cx="60" cy="60" r="37" data-v="0.3" data-k="1"></circle>
-                    </g>
-                  </svg>
                 </div>
               </div>
               <ul class="bullets">
-                <li>A self-initiated follow-up to my Seattle OEM internship: architected a multi-agent system automating volunteer matching across 40+ Seattle 311 categories, parsing heterogeneous request data into a unified schema (urgency, geo-location, keywords).</li>
-                <li>Designed a dual-track validation layer combining LLM semantic matching with rule-based scoring; reduced false-positive matches by 30% vs. an LLM-only baseline against a ground-truth set.</li>
-                <li>Integrated RAG via ChromaDB grounded on public handbooks; evaluated the pipeline with the RAGAS framework and LLM-as-Judge, improving the Faithfulness metric from 0.62 to 0.84.</li>
+                <li>A self-initiated follow-up to my Seattle OEM internship: matching community service requests (Seattle 311 style) to volunteers. Work in progress.</li>
+                <li>Built so far: a LangGraph workflow that parses each request into urgency, skills, certifications and languages, then scores candidates on two independent tracks, rule-based constraints and an LLM judge grounded in handbook passages retrieved from ChromaDB, recommending only where both agree.</li>
+                <li>Next: ingest public handbooks and Seattle 311 data, build a labelled evaluation set, and measure false positives against an LLM-only baseline.</li>
               </ul>
-              <div class="card-cta"><a class="btn btn-solid btn-sm" href="responsematch.html">View Case Study ↗</a></div>
+              <div class="card-cta"><a class="btn btn-solid btn-sm" href="responsematch.html">View Case Study ↗</a> <a class="btn btn-line btn-sm" href="https://github.com/Edwardx258/ResponseMatch">Code on GitHub ↗</a></div>
             </div>
           </div>
         </article>
